@@ -30,8 +30,8 @@ const ListView = () => {
             <div className="card shadow-sm flex-grow-1 mx-3 mt-3 ">
                 <div className="card-body d-flex justify-content-between align-items-stretch">
                     <div>
-                        {(balance-total)<=0 && <h1 className='text-danger d-flex align-items-center' >-<Rupee hw={hw}></Rupee>{Millify(balance-total)}</h1>}
-                        {(balance-total)>0 && <h1 className='text-primary d-flex align-items-center' ><Rupee hw={hw}></Rupee>{Millify(balance-total)}</h1>}
+                        {(balance-total)<0 && <h1 className='text-danger d-flex align-items-center' >-<Rupee hw={hw}></Rupee>{Millify(balance-total)}</h1>}
+                        {(balance-total)>=0 && <h1 className='text-primary d-flex align-items-center' ><Rupee hw={hw}></Rupee>{Millify(balance-total)}</h1>}
                         <p className='text-secondary'>Balance</p>
                     </div>
                     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="grey" class="bi bi-wallet2" viewBox="0 0 16 16">
