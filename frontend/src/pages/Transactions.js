@@ -16,12 +16,11 @@ const Transactions = () => {
     const[category,setCategory]=useState();
     const[amount,setAmount]=useState();
     const select=[
-        'Food & Beverage','Transportation','Rentals','Water Bill','Phone Bill','Electricity Bill','Gas Bill','Television Bill','Internet Bill','Other Utility Bills','Home Maintenance','Vehicle Maintenance','Medical Check Up','Insurances','Education','Houseware','Personal Items','Pets','Home Services','Other Expense','Fitness','Makeup','Gifts & Donations','Streaming Service','Fun Money','Investment','Pay Interest','Outgoing Transfer'
+        'Food & Beverage','Transportation','Rentals','Water Bill','Phone Bill','Electricity Bill','Gas Bill','Television Bill','Internet Bill','Other Utility Bills','Home Maintenance','Vehicle Maintenance','Medical Check Up','Insurances','Education','Houseware','Personal Items','Pets','Home Services','Other Expense','Fitness','Makeup','Gifts & Donations','Streaming Service','Fun Money','Investment','Pay Interest','Outgoing Transfer','Salary','Profit Income','Interest Income','Investments Gains','Rental Gains','Allowance/PocketMoney','Others',
     ];
-    const [selectTrue,setSelectTrue]=useState();
     const[wallet,setWallet]=useState();
     const fetchData=async()=>{
-        await fetch('https://expense-tracker-vsfi.onrender.com/expense/tracker',{
+        await fetch('https://expense-tracker-vsfi.onrender.com/expense/tracker/',{
             headers:{
                 'Authorization': `Bearer ${user.token}`,
             }
@@ -37,7 +36,6 @@ const Transactions = () => {
                 return data;
             })
             .catch(err=>{
-                window.alert('Error Getting Data');
             });
     }
     useEffect(()=>{
@@ -73,14 +71,7 @@ const Transactions = () => {
     const incomeSelect=[
         'Salary','Profit Income','Interest Income','Investments Gains','Rental Gains','Gifts','Allowance/PocketMoney','Others',
     ]
-    const handleSelect=()=>{
-        if(wallet!=='Transaction'){
-            setSelectTrue(true);
-        }
-        if(wallet==='Transaction'){
-            setSelectTrue(false);
-        }
-    }
+    
     const handleSubmit=async(item)=>{
         const exp={name,category,amount,flow: wallet};
         const response=await fetch('https://expense-tracker-vsfi.onrender.com/expense/tracker/'+item._id,{
@@ -100,12 +91,6 @@ const Transactions = () => {
     }
     const handleOpen=(item)=>{
         setAmount(item.amount);
-        if(item.category!=='Transaction'){
-            setSelectTrue(true);
-        }
-        if(item.category==='Transaction'){
-            setSelectTrue(false);
-        }
         setCategory(item.category);
         setName(item.name);
         setWallet(item.flow);
@@ -160,7 +145,7 @@ const Transactions = () => {
                                     {item.flow==='Income' && <td><h6><span className='badge bg-success'>{item.flow}</span></h6></td>}
                                     <td >
                                         <div className="dropdown">
-                                            <button className='btn btn-sm dropdown-toggle'  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                            <button className='btn btn-sm dropdown-toggle' type='button'  id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
   <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"/>
 </svg></button>
                                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">                                          
@@ -192,7 +177,7 @@ const Transactions = () => {
                     <div class="modal-body">
                         <div className='d-flex justify-content-between'>
                             <div className='form-floating  mb-3 me-2'>
-                                <select className='form-control'  id='floatingName' onChange={(e)=>{setWallet(e.target.value);handleSelect()}} value={wallet} required>
+                                <select className='form-control'  id='floatingName' onChange={(e)=>{setWallet(e.target.value)}} value={wallet} required>
                                     <option value="Transaction">Transaction</option>
                                     <option value="Income">Income</option>
                                     </select>
@@ -201,12 +186,7 @@ const Transactions = () => {
                             <div className='form-floating flex-grow-1 mb-3 me-2'>
                                 <select className='form-control' id='floatingCatg' value={category} onChange={(e)=>setCategory(e.target.value)} required>
                                     <option selected disabled>Select Category</option>
-                                    {!selectTrue && select.map((item)=>{
-                                        return (
-                                            <option className='text-truncate' value={item}>{item}</option>
-                                        );
-                                    })}
-                                    {selectTrue && incomeSelect.map((item)=>{
+                                    {select.map((item)=>{
                                         return (
                                             <option className='text-truncate' value={item}>{item}</option>
                                         );
