@@ -198,7 +198,6 @@ const Transactions = () => {
                                     </select>
                                 <label for="floatingName text-secondary">Type</label>
                             </div>
-                            <button>
                             <div className='form-floating flex-grow-1 mb-3 me-2'>
                                 <select className='form-control' id='floatingCatg' value={category} onChange={(e)=>setCategory(e.target.value)} required>
                                     <option selected disabled>Select Category</option>
@@ -215,7 +214,6 @@ const Transactions = () => {
                                 </select>
                                 <label for="floatingCatg">Category</label>
                             </div>
-                            </button>
                             <div className='form-floating flex-grow-1 mb-3 me-2'>
                                 <input className='form-control' id='floatingCatg' type="text" value={name} onChange={(e)=>setName(e.target.value)} required/>
                                 <label for="floatingCatg">Note</label>
