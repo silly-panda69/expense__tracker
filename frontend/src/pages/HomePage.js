@@ -109,8 +109,8 @@ const HomePage = () => {
                         <h5 className='text-primary' >Recent Transactions</h5>
                         <Link to='/transactions' className='' style={{textDecorationLine: 'none'}}><h5><span className='badge bg-primary'>View All</span></h5></Link>
                     </div>
-                    <div className=' table-responsive-lg'>
-                        <table className='table table-sm table-borderless'>
+                    <div className='table-responsive-lg'>
+                    <table className='table table-sm table-borderless'>
                         <thead className='shadow-sm'>
                             <tr>
                                 <th scope='col'>Name</th>
