@@ -9,11 +9,8 @@ const Modal = () => {
     const {user}=useContext(AuthContext);
     const {dispatch2,dispatch4}=useContext(ExpenseTotalContext);
     const select=[
-        'Food & Beverage','Transportation','Rentals','Water Bill','Phone Bill','Electricity Bill','Gas Bill','Television Bill','Internet Bill','Other Utility Bills','Home Maintenance','Vehicle Maintenance','Medical Check Up','Insurances','Education','Houseware','Personal Items','Pets','Home Services','Other Expense','Fitness','Makeup','Gifts & Donations','Streaming Service','Fun Money','Investment','Pay Interest','Outgoing Transfer'
+        'Food & Beverage','Transportation','Rentals','Water Bill','Phone Bill','Electricity Bill','Gas Bill','Television Bill','Internet Bill','Other Utility Bills','Home Maintenance','Vehicle Maintenance','Medical Check Up','Insurances','Education','Houseware','Personal Items','Pets','Home Services','Other Expense','Fitness','Makeup','Gifts & Donations','Streaming Service','Fun Money','Investment','Pay Interest','Outgoing Transfer','Salary','Profit Income','Interest Income','Investments Gains','Rental Gains','Allowance/PocketMoney',
     ];
-    const incomeSelect=[
-        'Salary','Profit Income','Interest Income','Investments Gains','Rental Gains','Gifts','Allowance/PocketMoney','Others',
-    ]
     const[name,setName]=useState();
     const[category,setCategory]=useState();
     const[amount,setAmount]=useState();
@@ -57,21 +54,10 @@ const Modal = () => {
         setName('');
         setAmount('');
     }
-    const [selectTrue,setSelectTrue]=useState(false);
-    const handleSelect=()=>{
-        if(type!=='Transaction'){
-            setSelectTrue(true);
-            setCategory('Salary');
-        }
-        if(type==='Transaction'){
-            setSelectTrue(false);
-            setCategory('Food & Beverage');
-        }
-    }
     useEffect(()=>{
         setName('');
-        setCategory('Food & Beverage');
         setAmount('');
+        setCategory('Food & Beverage');
         setType('Transaction');
     },[]);
     return (
@@ -84,7 +70,7 @@ const Modal = () => {
                     <div class="modal-body">
                         <div className='d-flex justify-content-between'>
                             <div className='form-floating flex-grow-1 mb-3 me-2'>
-                                <select className='form-control' onChange={(e)=>{setType(e.target.value);handleSelect();}}  id='floatingName' value={type}  required>
+                                <select className='form-control' onChange={(e)=>{setType(e.target.value)}}  id='floatingName' value={type}  required>
                                     <option value="Transaction">Transaction</option>
                                     <option value="Income">Income</option>
                                     </select>
@@ -92,12 +78,7 @@ const Modal = () => {
                             </div>
                             <div className='form-floating flex-grow-1 mb-3 me-2'>
                                 <select className='form-control' id='floatingCatg' value={category} onChange={(e)=>setCategory(e.target.value)} required>
-                                    {!selectTrue && select.map((item)=>{
-                                        return (
-                                            <option className='text-truncate' value={item}>{item}</option>
-                                        );
-                                    })}
-                                    {selectTrue && incomeSelect.map((item)=>{
+                                    {select.map((item)=>{
                                         return (
                                             <option className='text-truncate' value={item}>{item}</option>
                                         );
