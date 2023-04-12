@@ -1,6 +1,7 @@
 //packages
 const express=require('express');
 const mongoose=require('mongoose');
+const cors=require('cors');
 
 //imports
 const expenseRoute=require('./routes/expense');
@@ -9,6 +10,9 @@ const userRoute=require('./routes/user');
 const app=express();
 
 app.use(express.json());
+app.use(cors({
+    origin: '*'
+}));
 
 mongoose.connect(process.env.MONGO_DB)
     .then(()=>{
