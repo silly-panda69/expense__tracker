@@ -18,7 +18,7 @@ const Transactions = () => {
     const [selectTrue,setSelectTrue]=useState();
     const[wallet,setWallet]=useState();
     const fetchData=async()=>{
-        await fetch('/expense/tracker',{
+        await fetch('https://expense-tracker-vsfi.onrender.com/expense/tracker',{
             headers:{
                 'Authorization': `Bearer ${user.token}`,
             }
@@ -47,7 +47,7 @@ const Transactions = () => {
         if(!user){
             return;
         }
-        const response=await fetch('/expense/tracker/'+item._id,{
+        const response=await fetch('https://expense-tracker-vsfi.onrender.com/expense/tracker/'+item._id,{
             method: 'DELETE',
             headers:{
                 'Authorization': `Bearer ${user.token}`,
@@ -80,7 +80,7 @@ const Transactions = () => {
     }
     const handleSubmit=async(item)=>{
         const exp={name,category,amount,flow: wallet};
-        const response=await fetch('/expense/tracker/'+item._id,{
+        const response=await fetch('https://expense-tracker-vsfi.onrender.com/expense/tracker/'+item._id,{
             method: 'PATCH',
             body: JSON.stringify(exp),
             headers:{
