@@ -39,11 +39,12 @@ const deleteExpense=async(req,res)=>{
 const patchExpense=async(req,res)=>{
     try {
         const id=req.params.id;
-        const {name,category,amount}=req.body;
+        const {name,category,amount,flow}=req.body;
         const exp=await Expense.updateOne({_id: id},{
             name: name,
             category: category,
             amount: amount,
+            flow: flow,
         })
         return res.status(200).json(exp);
     }catch (err) {
