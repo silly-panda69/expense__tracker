@@ -19,7 +19,7 @@ const HomePage = () => {
     const {user}=useContext(AuthContext);
     useEffect(()=>{
         const fetchData=async()=>{
-            const response=await fetch('/expense/tracker',{
+            const response=await fetch('https://expense-tracker-vsfi.onrender.com/expense/tracker',{
                 headers:{
                     'Authorization': `Bearer ${user.token}`,
                 }
@@ -43,7 +43,7 @@ const HomePage = () => {
         fetchData();
     },[]);
     const handleClick=async(item)=>{
-        const response=await fetch('/expense/tracker/'+item._id,{
+        const response=await fetch('https://expense-tracker-vsfi.onrender.com/expense/tracker/'+item._id,{
             method: 'DELETE',
         });
         if(response.ok){
