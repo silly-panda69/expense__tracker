@@ -12,7 +12,7 @@ const Login = () => {
         setError();
         setLoading(true);
         const user={email,password};
-        const response=await fetch('/expense/user/login',{
+        const response=await fetch('https://expense-tracker-vsfi.onrender.com/expense/user/login',{
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(user),
