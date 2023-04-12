@@ -119,7 +119,7 @@ const Transactions = () => {
                     <h4 className='my-3'>All Transactions</h4>
                 </div>
             </div>
-            <div>
+            <div className=' table-responsive-lg'>
                 <table className="table table-borderless">
                     <thead className='bg-light shadow-sm'>
                         <tr>
