@@ -12,7 +12,7 @@ const Signin = () => {
     const handleLogin=async()=>{
         setLoading(true);
         const user={username,email,password};
-        const response=await fetch('/expense/user/signup',{
+        const response=await fetch('https://expense-tracker-vsfi.onrender.com/expense/user/signup',{
             method: 'POST',
             headers: {'Content-Type':'application/json'},
             body: JSON.stringify(user),
