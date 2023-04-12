@@ -24,7 +24,7 @@ const Modal = () => {
             return;
         }
         const exp={name,category,amount,flow: type};
-        const response=await fetch('/expense/tracker',{
+        const response=await fetch('https://expense-tracker-vsfi.onrender.com/expense/tracker',{
             method: 'POST',
             body: JSON.stringify(exp),
             headers:{
