@@ -59,11 +59,13 @@ const Modal = () => {
     }
     const [selectTrue,setSelectTrue]=useState(false);
     const handleSelect=()=>{
-        if(category!=='Transaction'){
+        if(type!=='Transaction'){
             setSelectTrue(true);
+            setCategory('Salary');
         }
-        if(category==='Transaction'){
+        if(type==='Transaction'){
             setSelectTrue(false);
+            setCategory('Food & Beverage');
         }
     }
     useEffect(()=>{
