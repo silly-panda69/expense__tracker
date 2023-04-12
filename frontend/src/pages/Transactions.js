@@ -58,7 +58,7 @@ const Transactions = () => {
         });
         if(response.ok){
             const json=await response.json();
-            dispatch1({type: 'REMOVE_EXPENSE',payload: json._id});
+            dispatch1({type: 'REMOVE_EXPENSE',payload: item._id});
             if(json.flow==='Transaction'){
                 dispatch2({type: 'MINUS_TOTAL',payload: json.amount});
             }
