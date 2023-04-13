@@ -10,6 +10,7 @@ const ListView = () => {
         var newValue = value;
         if(value<0){
             value*=-1;
+            newValue*=-1;
         }
         if (value >= 1000) {
             var suffixes = ["", "k", "m", "b","t"];
